@@ -7,7 +7,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float currentTime;
 
-    [SerializeField] private GameObject projectile;
+    [SerializeField] private Projectile projectile;
     [SerializeField] private Item projectileItem;
 
     [SerializeField] private int index;
@@ -29,7 +29,7 @@ public class Turret : MonoBehaviour
 
             if (Stockpile.Instance.RemoveFromStockpile(projectileItem, 1))
             {
-                GameObject newProjectile = Instantiate(projectile);
+                Projectile newProjectile = ProjectileManager.Instance.SpawnProjectile();
                 newProjectile.transform.position = turretBarrels[index].position;
                 newProjectile.transform.rotation = turretBarrels[index].rotation;
 

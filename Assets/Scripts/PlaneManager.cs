@@ -12,7 +12,7 @@ public class PlaneManager : MonoBehaviour
     [SerializeField] private List<Plane> planes = new List<Plane>();
     [SerializeField] private List<GameObject> planeSpawnPositions = new List<GameObject>();
 
-    [SerializeField] private ObjectPool _pool;
+    [SerializeField] private ObjectPool pool;
 
     private int _planeAmount = 0;
 
@@ -49,7 +49,7 @@ public class PlaneManager : MonoBehaviour
         for (int i = 0; i < _planeAmount; i++)
         {
 
-            Plane plane = _pool.Get() as Plane;
+            Plane plane = pool.Get() as Plane;
             plane.transform.position = planeSpawnPositions[Random.Range(0, planeSpawnPositions.Count - 1)].transform.position;
             planes.Add(plane);
         }
@@ -58,7 +58,7 @@ public class PlaneManager : MonoBehaviour
     public void RemovePlane(Plane plane)
     {
 
-        _pool.Release(plane);
+        pool.Release(plane);
         planes.Remove(plane);
 
         if (planes.Count <= 0) 

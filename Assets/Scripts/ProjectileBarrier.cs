@@ -6,7 +6,7 @@ public class ProjectileBarrier : MonoBehaviour
     {
         if (collision.tag == "Projectile")
         {
-            Destroy(collision.gameObject);
+            ProjectileManager.Instance.RemoveProjectile(collision.GetComponent<Projectile>());
         }
     }
 }
