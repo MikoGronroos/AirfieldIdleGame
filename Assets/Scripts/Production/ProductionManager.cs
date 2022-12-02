@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,36 +59,53 @@ public class ProductionManager : MonoBehaviour
             }
         }
 
-        foreach (var line in productionLines)
+        for (int i = 0; i < productionLines.Count; i++)
         {
+            int tempIndex = i;
+            var line = productionLines[i];
             ProductionItemUI ui = Instantiate(productionLinePrefab, productionLineParent);
-            ui.Setup(line.BaseProductionAmount, line.ProductionTime, line.Item.name);
+            _productionItemUIs.Add(ui);
+            ui.Setup(line.BaseProductionAmount, line.Item.name);
+            ui.SetupButton(() => {
+                UpgradeProductionLine(tempIndex);
+            });
         }
 
     }
 
+    private void UpgradeProductionLine(int index)
+    {
+        productionLines[index].Upgrade(() => {
+            _productionItemUIs[index].Setup(productionLines[index].BaseProductionAmount, productionLines[index].Item.name);
+        });
+    }
 }
 
-[System.Serializable]
+[Serializable]
 public class ProductionItem
 {
     public Item Item;
     public int BaseProductionAmount;
     public int ProductionLineLevel;
 
-    public float ProductionTime;
-
     private float _currentTime;
 
     public void Tick()
     {
-        _currentTime = Mathf.Clamp(_currentTime += 1 * Time.deltaTime, 0, ProductionTime);
+        _currentTime = Mathf.Clamp(_currentTime += 1 * Time.deltaTime, 0, 1);
 
         if (_currentTime >= 1)
         {
             Stockpile.Instance.AddToStockpile(Item, BaseProductionAmount);
             _currentTime = 0;
         }
+    }
+
+    public void Upgrade(Action onUpgraded)
+    {
+        ProductionLineLevel += 1;
+        BaseProductionAmount += 1;
+        onUpgraded?.Invoke();
     }
 
 }

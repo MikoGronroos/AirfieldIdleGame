@@ -7,7 +7,6 @@ public class Turret : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float currentTime;
 
-    [SerializeField] private Projectile projectile;
     [SerializeField] private Item projectileItem;
 
     [SerializeField] private int index;
@@ -32,6 +31,7 @@ public class Turret : MonoBehaviour
                 Projectile newProjectile = ProjectileManager.Instance.SpawnProjectile();
                 newProjectile.transform.position = turretBarrels[index].position;
                 newProjectile.transform.rotation = turretBarrels[index].rotation;
+                newProjectile.HasBeenHit = false;
 
                 newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.up * projectileSpeed);
 

@@ -109,10 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc6b6b5359f2904fb43509fd9e9e11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1.12
-  projectileSpeed: 355
+  fireRate: 1.11
+  projectileSpeed: 390
   currentTime: 0
-  projectile: {fileID: 2399201304743726113, guid: fd1bcbf958dd08d43876830108ee55be, type: 3}
   projectileItem: {fileID: 11400000, guid: 9fe39a816168211408a3f11b84a1cb24, type: 2}
   index: 0
   turretBarrels:
