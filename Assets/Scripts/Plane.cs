@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Plane : MonoBehaviour
+public class Plane : PoolableObject
 {
 
     [SerializeField] private float maxSpeed;
@@ -29,9 +29,7 @@ public class Plane : MonoBehaviour
 
             projectile.HasBeenHit = true;
             CurrencyManager.Instance.Currency += currencyOnDeath;
-            PlaneManager.Instance.RemovePlane(gameObject);
-            Destroy(collision.gameObject);
-
+            PlaneManager.Instance.RemovePlane(this);
         }
     }
 }

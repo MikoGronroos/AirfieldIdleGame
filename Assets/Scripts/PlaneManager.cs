@@ -4,13 +4,15 @@ using UnityEngine;
 public class PlaneManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject planePrefab;
+    [SerializeField] private Plane planePrefab;
 
     [SerializeField] private int minPlanes;
     [SerializeField] private int maxPlanes;
 
-    [SerializeField] private List<GameObject> planes = new List<GameObject>();
+    [SerializeField] private List<Plane> planes = new List<Plane>();
     [SerializeField] private List<GameObject> planeSpawnPositions = new List<GameObject>();
+
+    [SerializeField] private ObjectPool _pool;
 
     private int _planeAmount = 0;
 
@@ -46,18 +48,18 @@ public class PlaneManager : MonoBehaviour
 
         for (int i = 0; i < _planeAmount; i++)
         {
-            GameObject plane = Instantiate(planePrefab);
+
+            Plane plane = _pool.Get() as Plane;
             plane.transform.position = planeSpawnPositions[Random.Range(0, planeSpawnPositions.Count - 1)].transform.position;
             planes.Add(plane);
         }
     }
 
-    public void RemovePlane(GameObject plane)
+    public void RemovePlane(Plane plane)
     {
 
-        var planeCopy = plane;
+        _pool.Release(plane);
         planes.Remove(plane);
-        Destroy(planeCopy);
 
         if (planes.Count <= 0) 
         {

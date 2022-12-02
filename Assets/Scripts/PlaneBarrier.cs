@@ -7,7 +7,7 @@ public class PlaneBarrier : MonoBehaviour
     {
         if (collision.tag == "Plane")
         {
-            PlaneManager.Instance.RemovePlane(collision.gameObject);
+            PlaneManager.Instance.RemovePlane(collision.GetComponent<Plane>());
         }
     }
 
