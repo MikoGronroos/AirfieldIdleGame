@@ -20,9 +20,9 @@ public class Turret : MonoBehaviour
     public void UpdateTick()
     {
 
-        currentTime -= 1 * Time.deltaTime;
+        currentTime = Mathf.Clamp(currentTime -= 1 * Time.deltaTime, 0, fireRate);
 
-        if (currentTime < 0)
+        if (currentTime <= 0)
         {
             index = index == 0 ? 1 : 0;
 

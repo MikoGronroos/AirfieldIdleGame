@@ -35,7 +35,13 @@ public class StoreManager : MonoBehaviour
             var line = storeItems[i];
             StoreSlot ui = Instantiate(storeSlotPrefab, sotreSlotParent);
             drawnStoreItems.Add(ui);
-            ui.Setup(storeItems[i]);
+            ui.Setup(storeItems[i], OnStoreItemClicked);
         }
     }
+
+    private void OnStoreItemClicked()
+    {
+        BuildingManager.Instance.EnableBuildingGrid();
+    }
+
 }
