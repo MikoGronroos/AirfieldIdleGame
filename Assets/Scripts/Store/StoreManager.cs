@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
 
-    [SerializeField] private List<string> storeItems = new List<string>();
+    [SerializeField] private List<StoreItem> storeItems = new List<StoreItem>();
 
     [SerializeField] private StoreSlot storeSlotPrefab;
     [SerializeField] private Transform sotreSlotParent;
@@ -31,17 +32,16 @@ public class StoreManager : MonoBehaviour
 
         for (int i = 0; i < storeItems.Count; i++)
         {
-            int tempIndex = i;
             var line = storeItems[i];
             StoreSlot ui = Instantiate(storeSlotPrefab, sotreSlotParent);
             drawnStoreItems.Add(ui);
-            ui.Setup(storeItems[i], OnStoreItemClicked);
+            ui.Setup(storeItems[i].ItemName, OnStoreItemClicked, i);
         }
     }
 
-    private void OnStoreItemClicked()
+    private void OnStoreItemClicked(int index)
     {
-        BuildingManager.Instance.EnableBuildingGrid();
+        BuildingManager.Instance.EnableBuildingGrid(storeItems[index]);
     }
 
 }

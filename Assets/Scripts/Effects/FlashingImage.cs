@@ -23,7 +23,6 @@ public class FlashingImage : MonoBehaviour
     {
         if (_goingForward)
         {
-            Debug.Log("Hei1");
             if (_currentTime >= 1)
             {
                 _goingForward = false;
@@ -32,7 +31,6 @@ public class FlashingImage : MonoBehaviour
         }
         else
         {
-            Debug.Log("Hei2");
             if (_currentTime <= 0) 
             {
                 flashingSpeed *= -1;

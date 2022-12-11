@@ -9,26 +9,13 @@ public class StoreSlot : MonoBehaviour
     [SerializeField] private Button slotButton;
     [SerializeField] private TextMeshProUGUI slotNameText;
 
-    public void Setup(string name, Action buttonAction)
+    public void Setup(string name, Action<int> buttonAction, int index)
     {
         slotNameText.text = name;
         slotButton.onClick.AddListener(() =>
         {
-            buttonAction();
+            buttonAction(index);
         });
-    }
-
-}
-
-public class StoreItem : ScriptableObject
-{
-    public string itemName;
-    public GameObject prefab;
-    private int buyAmount = 0;
-
-    public bool HasBeenBought()
-    {
-        return buyAmount > 0;
     }
 
 }

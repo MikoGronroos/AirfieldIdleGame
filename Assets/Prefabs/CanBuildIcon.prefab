@@ -281,6 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cec84008b2a854f94678834914c4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashingSpeed: 1.3
+  flashingSpeed: 0.8
   minFlashAlpha: 155
   maxFlashAlpha: 255
+  _currentTime: 0
+  _goingForward: 1
