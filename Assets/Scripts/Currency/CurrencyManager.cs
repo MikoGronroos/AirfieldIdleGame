@@ -39,4 +39,9 @@ public class CurrencyManager : MonoBehaviour
         _instance = this;
     }
 
+    public bool HasEnoughCurrency(int price)
+    {
+        return currency >= price;
+    }
+
 }

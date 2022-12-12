@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Antiair
   Prefab: {fileID: 4445425861503015271, guid: 2a68cdfdea605cb408b40f9dc4355cfb, type: 3}
+  Price: 2

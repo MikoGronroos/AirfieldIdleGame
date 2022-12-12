@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public class BuildingManager : MonoBehaviour
         _instance = this;
     }
 
-    public void EnableBuildingGrid(StoreItem item)
+    public void EnableBuildingGrid(StoreItem item, Action<StoreItem> buyCallback)
     {
         foreach (var cell in GridCreator.Instance.Grid.GridArray)
         {
@@ -35,7 +36,13 @@ public class BuildingManager : MonoBehaviour
                     var tempItem = item;
                     DisableBuildingGrid();
                     var tempCell = cell;
-                    tempCell.CurrentObject = Build(tempItem); 
+                    var go = Build(tempItem);
+                    tempCell.CurrentObject = go;
+                    if (go.TryGetComponent(out Turret turret))
+                    {
+                        TurretManager.Instance.AddTurret(turret);
+                    }
+                    buyCallback?.Invoke(item);
                 });
                 cell.CurrentObject = _tempBuildingButton.gameObject;
                 _tempBuildingButton = null;

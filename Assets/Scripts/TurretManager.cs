@@ -7,8 +7,17 @@ public class TurretManager : MonoBehaviour
 
     [SerializeField] private List<Turret> turrets = new List<Turret>();
 
+    #region Singleton
+
+    private static TurretManager _instance;
+
+    public static TurretManager Instance { get { return _instance; } }
+
+    #endregion
+
     private void Awake()
     {
+        _instance = this;
         turrets = FindObjectsOfType<Turret>().ToList();
     }
 
@@ -19,4 +28,15 @@ public class TurretManager : MonoBehaviour
             turret.UpdateTick();
         }
     }
+
+    public void AddTurret(Turret turret)
+    {
+        turrets.Add(turret);
+    }
+
+    public void RemoveTurret(Turret turret)
+    {
+        turrets.Remove(turret);
+    }
+
 }

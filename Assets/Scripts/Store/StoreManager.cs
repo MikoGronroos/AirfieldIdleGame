@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class StoreManager : MonoBehaviour
@@ -35,13 +36,21 @@ public class StoreManager : MonoBehaviour
             var line = storeItems[i];
             StoreSlot ui = Instantiate(storeSlotPrefab, sotreSlotParent);
             drawnStoreItems.Add(ui);
-            ui.Setup(storeItems[i].ItemName, OnStoreItemClicked, i);
+            ui.Setup(storeItems[i].ItemName, storeItems[i].Price, OnStoreItemClicked, i);
         }
     }
 
     private void OnStoreItemClicked(int index)
     {
-        BuildingManager.Instance.EnableBuildingGrid(storeItems[index]);
+
+        if (!CurrencyManager.Instance.HasEnoughCurrency(storeItems[index].Price)) return;
+
+        BuildingManager.Instance.EnableBuildingGrid(storeItems[index], UseMoney);
+    }
+
+    private void UseMoney(StoreItem item)
+    {
+        CurrencyManager.Instance.Currency -= item.Price;
     }
 
 }
