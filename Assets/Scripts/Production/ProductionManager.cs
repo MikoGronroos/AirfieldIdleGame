@@ -75,6 +75,9 @@ public class ProductionManager : MonoBehaviour
 
     private void UpgradeProductionLine(int index)
     {
+
+        if (!productionLines[index].CanUpgrade()) return;
+
         productionLines[index].Upgrade(() => {
             _productionItemUIs[index].Setup(productionLines[index].BaseProductionAmount, productionLines[index].Item.name);
         });
@@ -87,6 +90,7 @@ public class ProductionItem
     public Item Item;
     public int BaseProductionAmount;
     public int ProductionLineLevel;
+    public int BaseUpgradeCost;
 
     private float _currentTime;
 
@@ -101,8 +105,14 @@ public class ProductionItem
         }
     }
 
+    public bool CanUpgrade()
+    {
+        return CurrencyManager.Instance.Currency >= BaseUpgradeCost;
+    }
+
     public void Upgrade(Action onUpgraded)
     {
+        CurrencyManager.Instance.Currency -= BaseUpgradeCost;
         ProductionLineLevel += 1;
         BaseProductionAmount += 1;
         onUpgraded?.Invoke();
