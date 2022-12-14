@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606bf46b1aa61b245a7e5dbbf82ff7dd, type: 3}
-  m_Name: AdvanceAntiAirStoreItem
+  m_Name: BallonabwehrkanoneStoreItem
   m_EditorClassIdentifier: 
-  ItemName: Advance antiair
-  Prefab: {fileID: 4445425861503015271, guid: 2a68cdfdea605cb408b40f9dc4355cfb, type: 3}
-  Price: 25
+  ItemName: Ballonabwehrkanone
+  Prefab: {fileID: 4445425861503015271, guid: 4ccfcb43b109121498dae8fa32f7d876, type: 3}
+  Price: 1

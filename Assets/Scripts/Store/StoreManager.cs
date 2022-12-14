@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Finark.Utils;
+using System.Linq;
 
 public class StoreManager : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class StoreManager : MonoBehaviour
                 Destroy(slot);
             }
         }
+
+        storeItems = storeItems.OrderBy(t => t.Price).ToList();
 
         for (int i = 0; i < storeItems.Count; i++)
         {
