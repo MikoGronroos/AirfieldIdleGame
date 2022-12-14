@@ -1362,6 +1362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeItems:
+  - {fileID: 11400000, guid: cf88099c1252f2445924e85baec07a49, type: 2}
   - {fileID: 11400000, guid: 4676050f428524f4bb5ec8dbc683c130, type: 2}
   storeSlotPrefab: {fileID: 2028224664577959129, guid: fd24f622053c2d345ad040f91c94aff6, type: 3}
   storeSlotParent: {fileID: 1353558339}
@@ -2748,7 +2749,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068815393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3008, y: -12.44, z: 0}
+  m_LocalPosition: {x: 1.3008, y: -12.42, z: 0}
   m_LocalScale: {x: 75.87775, y: -4.836558, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
