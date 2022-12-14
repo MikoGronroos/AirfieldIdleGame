@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Turret : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class Turret : MonoBehaviour
 
     private bool _goingUp = true;
 
+    [field: SerializeField] public string Id { get; set; }
+
     private void Start()
     {
         currentTime = fireRate;
@@ -32,7 +36,7 @@ public class Turret : MonoBehaviour
 
             if (shootFromRandomBarrels)
             {
-                index = Random.Range(0, turretBarrels.Count());
+                index = UnityEngine.Random.Range(0, turretBarrels.Count());
             }else if(turretBarrels.Count() == 1)
             {
                 index = 0;
@@ -65,5 +69,13 @@ public class Turret : MonoBehaviour
         }
 
     }
+
+    private void OnMouseDown()
+    {
+        MergeManager.Instance.SelectedTurret = this;
+    }
+
+    [ContextMenu("Generate new id")]
+    public void GenerateId() => Id = Guid.NewGuid().ToString();
 
 }
