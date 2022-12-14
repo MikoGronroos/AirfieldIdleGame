@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -9,8 +10,12 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private Item projectileItem;
 
+    [SerializeField] private bool shootFromRandomBarrels;
+
     [SerializeField] private int index;
     [SerializeField] private Transform[] turretBarrels;
+
+    private bool _goingUp = true;
 
     private void Start()
     {
@@ -24,7 +29,27 @@ public class Turret : MonoBehaviour
 
         if (currentTime <= 0)
         {
-            index = index == 0 ? 1 : 0;
+
+            if (shootFromRandomBarrels)
+            {
+                index = Random.Range(0, turretBarrels.Count());
+            }else if(turretBarrels.Count() == 1)
+            {
+                index = 0;
+            }
+            else
+            {
+                if (_goingUp)
+                {
+                    index++;
+                    if (index <= turretBarrels.Count() - 1) _goingUp = false;
+                }
+                else
+                {
+                    index--;
+                    if (index <= 0) _goingUp = true;
+                }
+            }
 
             if (Stockpile.Instance.RemoveFromStockpile(projectileItem, 1))
             {

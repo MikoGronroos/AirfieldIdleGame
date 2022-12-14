@@ -165,6 +165,8 @@ MonoBehaviour:
   projectileSpeed: 390
   currentTime: 0
   projectileItem: {fileID: 11400000, guid: 9fe39a816168211408a3f11b84a1cb24, type: 2}
+  amountOfBarrels: 2
+  shootFromRandomBarrels: 0
   index: 0
   turretBarrels:
   - {fileID: 7003466377453902674}
