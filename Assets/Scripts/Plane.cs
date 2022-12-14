@@ -28,7 +28,7 @@ public class Plane : PoolableObject
             if (projectile.HasBeenHit) return;
 
             projectile.HasBeenHit = true;
-            CurrencyManager.Instance.Currency += currencyOnDeath;
+            CurrencyManager.Instance.CurrentCurrency += currencyOnDeath;
             PlaneManager.Instance.RemovePlane(this);
             ProjectileManager.Instance.RemoveProjectile(projectile);
         }

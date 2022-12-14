@@ -107,12 +107,12 @@ public class ProductionItem
 
     public bool CanUpgrade()
     {
-        return CurrencyManager.Instance.Currency >= BaseUpgradeCost;
+        return CurrencyManager.Instance.CurrentCurrency >= BaseUpgradeCost;
     }
 
     public void Upgrade(Action onUpgraded)
     {
-        CurrencyManager.Instance.Currency -= BaseUpgradeCost;
+        CurrencyManager.Instance.CurrentCurrency -= BaseUpgradeCost;
         ProductionLineLevel += 1;
         BaseProductionAmount += 1;
         onUpgraded?.Invoke();

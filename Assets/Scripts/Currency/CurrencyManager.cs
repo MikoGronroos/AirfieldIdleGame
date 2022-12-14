@@ -4,17 +4,18 @@ using TMPro;
 public class CurrencyManager : MonoBehaviour
 {
 
-    [SerializeField] private int currency = 0;
+    [SerializeField] private int startCurrency = 0;
+    [SerializeField] private int currentCurrency = 0;
 
-    public int Currency 
+    public int CurrentCurrency 
     { 
         get 
         { 
-            return currency;
+            return currentCurrency;
         } 
         set {
-            currency = value; 
-            currencyText.text = $"{currency}$"; 
+            currentCurrency = value; 
+            currencyText.text = $"{currentCurrency}$"; 
         }
     }
 
@@ -39,9 +40,14 @@ public class CurrencyManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        CurrentCurrency = startCurrency;
+    }
+
     public bool HasEnoughCurrency(int price)
     {
-        return currency >= price;
+        return currentCurrency >= price;
     }
 
 }

@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
+using Finark.Utils;
 
 public class StoreManager : MonoBehaviour
 {
@@ -10,9 +8,12 @@ public class StoreManager : MonoBehaviour
     [SerializeField] private List<StoreItem> storeItems = new List<StoreItem>();
 
     [SerializeField] private StoreSlot storeSlotPrefab;
-    [SerializeField] private Transform sotreSlotParent;
+    [SerializeField] private Transform storeSlotParent;
 
-    private List<StoreSlot> drawnStoreItems = new List<StoreSlot>();
+    [SerializeField] private ShopDragSprite dragSpritePrefab;
+
+    private List<StoreSlot> _drawnStoreItems = new List<StoreSlot>();
+    private StoreItem _currentlySelectedStoreItem;
 
     private void Start()
     {
@@ -21,12 +22,12 @@ public class StoreManager : MonoBehaviour
 
     private void UpdateStore()
     {
-        if (drawnStoreItems.Count > 0)
+        if (_drawnStoreItems.Count > 0)
         {
-            for (int i = drawnStoreItems.Count - 1; i >= 0; i--)
+            for (int i = _drawnStoreItems.Count - 1; i >= 0; i--)
             {
-                var slot = drawnStoreItems[i].gameObject;
-                drawnStoreItems.RemoveAt(i);
+                var slot = _drawnStoreItems[i].gameObject;
+                _drawnStoreItems.RemoveAt(i);
                 Destroy(slot);
             }
         }
@@ -34,23 +35,39 @@ public class StoreManager : MonoBehaviour
         for (int i = 0; i < storeItems.Count; i++)
         {
             var line = storeItems[i];
-            StoreSlot ui = Instantiate(storeSlotPrefab, sotreSlotParent);
-            drawnStoreItems.Add(ui);
-            ui.Setup(storeItems[i].ItemName, storeItems[i].Price, OnStoreItemClicked, i);
+            StoreSlot ui = Instantiate(storeSlotPrefab, storeSlotParent);
+            _drawnStoreItems.Add(ui);
+            ui.Setup(storeItems[i].ItemName, storeItems[i].Price, OnStoreItemSelected, i);
         }
     }
 
-    private void OnStoreItemClicked(int index)
+    private void OnStoreItemSelected(int index)
     {
+        _currentlySelectedStoreItem = storeItems[index];
+        BuildingManager.Instance.EnableBuildingGrid();
 
-        if (!CurrencyManager.Instance.HasEnoughCurrency(storeItems[index].Price)) return;
-
-        BuildingManager.Instance.EnableBuildingGrid(storeItems[index], UseMoney);
+        Instantiate(dragSpritePrefab).Setup(null, MyUtils.GetMouseWorldPosition(), DragEnded);
     }
 
-    private void UseMoney(StoreItem item)
+    private void DragEnded(GameObject obj)
     {
-        CurrencyManager.Instance.Currency -= item.Price;
+        if (GridCreator.Instance.Grid.IsInsideOfGrid(obj.transform.position))
+        {
+
+            if (TryUseMoney(_currentlySelectedStoreItem))
+            {
+                BuildingManager.Instance.Build(_currentlySelectedStoreItem.Prefab, obj.transform.position);
+            }
+        }
+        _currentlySelectedStoreItem = null;
+        Destroy(obj);
+    }
+
+    private bool TryUseMoney(StoreItem item)
+    {
+        if (!CurrencyManager.Instance.HasEnoughCurrency(item.Price)) return false;
+        CurrencyManager.Instance.CurrentCurrency -= item.Price;
+        return true;
     }
 
 }

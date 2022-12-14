@@ -13,17 +13,17 @@ public class BuildingManager : MonoBehaviour
 
     #endregion
 
-    [SerializeField] private BuildingButton canBuildIconPrefab;
+    [SerializeField] private GameObject canBuildIconPrefab;
 
-    private List<BuildingButton> drawnCanBuildIcons = new List<BuildingButton>();
-    private BuildingButton _tempBuildingButton;
+    private List<GameObject> drawnCanBuildIcons = new List<GameObject>();
+    private GameObject _tempBuildingButton;
 
     private void Awake()
     {
         _instance = this;
     }
 
-    public void EnableBuildingGrid(StoreItem item, Action<StoreItem> buyCallback)
+    public void EnableBuildingGrid()
     {
         foreach (var cell in GridCreator.Instance.Grid.GridArray)
         {
@@ -31,20 +31,7 @@ public class BuildingManager : MonoBehaviour
             {
                 _tempBuildingButton = Instantiate(canBuildIconPrefab);
                 drawnCanBuildIcons.Add(_tempBuildingButton);
-                _tempBuildingButton.Setup(() =>
-                {
-                    var tempItem = item;
-                    DisableBuildingGrid();
-                    var tempCell = cell;
-                    var go = Build(tempItem);
-                    tempCell.CurrentObject = go;
-                    if (go.TryGetComponent(out Turret turret))
-                    {
-                        TurretManager.Instance.AddTurret(turret);
-                    }
-                    buyCallback?.Invoke(item);
-                });
-                cell.CurrentObject = _tempBuildingButton.gameObject;
+                cell.CurrentObject = _tempBuildingButton;
                 _tempBuildingButton = null;
             }
         }
@@ -59,9 +46,16 @@ public class BuildingManager : MonoBehaviour
         drawnCanBuildIcons.Clear();
     }
 
-    private GameObject Build(StoreItem item)
+    public GameObject Build(GameObject prefab, Vector3 pos)
     {
-        return Instantiate(item.Prefab);
+        DisableBuildingGrid();
+        var go = Instantiate(prefab);
+        if (go.TryGetComponent(out Turret turret))
+        {
+            TurretManager.Instance.AddTurret(turret);
+        }
+        GridCreator.Instance.Grid.GetValue(pos).CurrentObject = go;
+        return go;
     }
 
 }
