@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Turret : MonoBehaviour
 {
@@ -92,6 +89,7 @@ public class Turret : MonoBehaviour
 
     private void ProjectileShotDownAPlane()
     {
+        UIEffectManager.Instance.StartUIEffect(UIEffect.KillConfirmed, transform.position);
         planesShotDown++;
     }
 

@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3511863747455599111}
   - component: {fileID: 3511863747455599108}
   - component: {fileID: 3511863747455599109}
+  - component: {fileID: -1752619174254641067}
   m_Layer: 5
-  m_Name: PlaneShotDownCanvas
+  m_Name: KillconfirmedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-1752619174254641067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511863747455599114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90afa607f788dc84285e34224604b12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3511863748107224951
 GameObject:
   m_ObjectHideFlags: 0
