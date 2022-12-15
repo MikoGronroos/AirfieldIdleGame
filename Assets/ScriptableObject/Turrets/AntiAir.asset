@@ -16,3 +16,4 @@ MonoBehaviour:
   <Id>k__BackingField: 7ab242f3-0840-46a7-b73d-88e66e737c14
   <Prefab>k__BackingField: {fileID: 4445425861503015271, guid: 2a68cdfdea605cb408b40f9dc4355cfb, type: 3}
   <Icon>k__BackingField: {fileID: 21300000, guid: d24e7e0b75e1a244bb9687d6fd4315ef, type: 3}
+  <PlaneKillsNeededToMerge>k__BackingField: 10

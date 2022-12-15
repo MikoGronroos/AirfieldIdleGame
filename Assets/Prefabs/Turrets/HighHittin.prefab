@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc6b6b5359f2904fb43509fd9e9e11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1.11
-  projectileSpeed: 390
+  fireRate: 0.3
+  projectileSpeed: 550
   currentTime: 0
   planesShotDown: 0
   projectileItem: {fileID: 11400000, guid: 9fe39a816168211408a3f11b84a1cb24, type: 2}
