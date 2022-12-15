@@ -15,3 +15,5 @@ MonoBehaviour:
   <turretName>k__BackingField: Ballonabwehrkanone
   <Id>k__BackingField: 828cf3e5-7f2e-4864-9190-a0fd0a8f08aa
   <Prefab>k__BackingField: {fileID: 4445425861503015271, guid: 4ccfcb43b109121498dae8fa32f7d876, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 7395bf0bc3cc40e4ab2dda5ec6832261, type: 3}
+  <PlaneKillsNeededToMerge>k__BackingField: 15

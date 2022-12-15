@@ -141,6 +141,9 @@ MonoBehaviour:
   index: 0
   turretBarrels:
   - {fileID: 7003466377453902674}
+  possibleMerges:
+  - {fileID: 4445425861503015265, guid: 2a68cdfdea605cb408b40f9dc4355cfb, type: 3}
+  - {fileID: 4445425861503015265, guid: 02b63cf2447c0da409bd96614772b8a0, type: 3}
   <TurretInfo>k__BackingField: {fileID: 11400000, guid: 973714af4dfdd324583d2a8ae6564284, type: 2}
 --- !u!61 &6758866211991601026
 BoxCollider2D:

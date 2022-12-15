@@ -10,8 +10,6 @@ public class MergeManager : MonoBehaviour
 
     [SerializeField] private GameObject canBuildIconPrefab;
 
-    [SerializeField] private MergeTree mergeTree;
-
     private List<GameObject> drawnCanBuildIcons = new List<GameObject>();
     private GameObject _tempBuildingButton;
 
@@ -90,6 +88,9 @@ public class MergeManager : MonoBehaviour
             {
                 if (underMouse.CurrentObject.TryGetComponent(out Turret turret))
                 {
+
+                    if(turret.GetPlanesShotDown() >= turret.TurretInfo.PlaneKillsNeededToMerge && selectedTurret.GetPlanesShotDown() >= selectedTurret.TurretInfo.PlaneKillsNeededToMerge)
+
                     if (turret.UniqueId != selectedTurret.UniqueId)
                     {
                         if (turret.TurretInfo.Id == selectedTurret.TurretInfo.Id)
@@ -97,7 +98,7 @@ public class MergeManager : MonoBehaviour
                             var grid = GridCreator.Instance.Grid.GetValue(selectedTurret.transform.position);
                             var selectedGameObject = grid.CurrentObject;
                             grid.CurrentObject = null;
-                            Merge(underMouse);
+                            Merge(underMouse, turret);
                             Destroy(selectedGameObject);
                         }
                     }
@@ -110,11 +111,15 @@ public class MergeManager : MonoBehaviour
         Destroy(obj);
     }
 
-    private void Merge(GridCell cell)
+    private void Merge(GridCell cell, Turret upgrade)
     {
+
+        //Clear the original object in the cell
         var tempObject = cell.CurrentObject;
         cell.CurrentObject = null;
         Destroy(tempObject);
-    }
 
+        //Create merge product prefab
+        BuildingManager.Instance.Build(upgrade.GetPossibleMerges()[UnityEngine.Random.Range(0,2)].gameObject, cell.GetGridPosition()).TryGetComponent(out Turret turret);
+    }
 }

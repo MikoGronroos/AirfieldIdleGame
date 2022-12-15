@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private int index;
     [SerializeField] private Transform[] turretBarrels;
+
+    [SerializeField] private Turret[] possibleMerges;
 
     private bool _goingUp = true;
 
@@ -95,6 +98,16 @@ public class Turret : MonoBehaviour
     public void StartDrag()
     {
         MergeManager.Instance.SelectedTurret = this;
+    }
+
+    public Turret[] GetPossibleMerges()
+    {
+        return possibleMerges;
+    }
+
+    public int GetPlanesShotDown()
+    {
+        return planesShotDown;
     }
 
 }

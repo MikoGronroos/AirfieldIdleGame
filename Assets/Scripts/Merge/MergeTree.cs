@@ -9,18 +9,16 @@ public class MergeTree
 
     [field: SerializeField] public MergeTreeBranch[] Tree { get; private set; }
 
-    public List<int> MergeTreeIndexes = new List<int>() { 0 };
-
-    public GameObject GetMerge()
+    public GameObject GetMerge(List<int> mergeTreeIndexes)
     {
         GameObject mergeObject = null;
 
         MergeTreeBranch currentBranch = Tree[0];
 
-        for (int i = 1; i < MergeTreeIndexes.Count; i++)
+        for (int i = 1; i < mergeTreeIndexes.Count; i++)
         {
-            currentBranch = currentBranch.NextBranches[MergeTreeIndexes[i]];
-            if (i >= MergeTreeIndexes.Count - 1)
+            currentBranch = currentBranch.NextBranches[mergeTreeIndexes[i]];
+            if (i >= mergeTreeIndexes.Count - 1)
             {
                 mergeObject = currentBranch.Turret.Prefab;
             }

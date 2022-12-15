@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5764706, g: 0.32941177, b: 0.32941177, a: 1}
+  m_Color: {r: 0.12941177, g: 0.13725491, b: 0.36862746, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4197588567111113181}
   - component: {fileID: 2924871250525147282}
   m_Layer: 0
-  m_Name: AntiAir
+  m_Name: HighHittin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   possibleMerges:
   - {fileID: 4445425861503015265, guid: 4ccfcb43b109121498dae8fa32f7d876, type: 3}
   - {fileID: 4445425861503015265, guid: 4ccfcb43b109121498dae8fa32f7d876, type: 3}
-  <TurretInfo>k__BackingField: {fileID: 11400000, guid: 0f780dcc1e2521f4b8b0d13a9a683576, type: 2}
+  <TurretInfo>k__BackingField: {fileID: 11400000, guid: c1030278aa2f8aa4da12470ec63249de, type: 2}
 --- !u!61 &4197588567111113181
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5754717, g: 0.32845318, b: 0.32845318, a: 1}
+  m_Color: {r: 0.12941177, g: 0.13725491, b: 0.36862746, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -425,7 +425,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5764706, g: 0.32941177, b: 0.32941177, a: 1}
+  m_Color: {r: 0.12669098, g: 0.13501564, b: 0.3679245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

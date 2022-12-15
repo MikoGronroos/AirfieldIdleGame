@@ -1189,12 +1189,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedTurret: {fileID: 0}
   canBuildIconPrefab: {fileID: 1674772219429827587, guid: affa4f621c000534585717b5767dd274, type: 3}
-  sprite: {fileID: 21300000, guid: 44854e2fa226bb44987c1be296031ada, type: 3}
   mergeTree:
     <Tree>k__BackingField:
     - Turret: {fileID: 11400000, guid: 973714af4dfdd324583d2a8ae6564284, type: 2}
-      NextBranches: []
-    MergeTreeIndexes: 00000000
+      NextBranches:
+      - Turret: {fileID: 11400000, guid: 0f780dcc1e2521f4b8b0d13a9a683576, type: 2}
+        NextBranches:
+        - Turret: {fileID: 11400000, guid: 0f780dcc1e2521f4b8b0d13a9a683576, type: 2}
+          NextBranches: []
+        - Turret: {fileID: 11400000, guid: 973714af4dfdd324583d2a8ae6564284, type: 2}
+          NextBranches: []
+      - Turret: {fileID: 11400000, guid: 973714af4dfdd324583d2a8ae6564284, type: 2}
+        NextBranches:
+        - Turret: {fileID: 11400000, guid: 0f780dcc1e2521f4b8b0d13a9a683576, type: 2}
+          NextBranches: []
+        - Turret: {fileID: 11400000, guid: 973714af4dfdd324583d2a8ae6564284, type: 2}
+          NextBranches: []
 --- !u!1 &1153666320
 GameObject:
   m_ObjectHideFlags: 0
