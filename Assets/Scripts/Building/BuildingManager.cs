@@ -48,7 +48,6 @@ public class BuildingManager : MonoBehaviour
 
     public GameObject Build(GameObject prefab, Vector3 pos)
     {
-        DisableBuildingGrid();
         var go = Instantiate(prefab);
         GridCreator.Instance.Grid.GetValue(pos).CurrentObject = go;
         return go;

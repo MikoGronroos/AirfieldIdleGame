@@ -21,13 +21,13 @@ public class DragManager : MonoBehaviour
         _instance = this;
     }
 
-    public void StartDrag(DragType type, Action<GameObject> onDragEnded)
+    public void StartDrag(Sprite icon, DragType type, Action<GameObject> onDragEnded)
     {
         DragObject temp = FindDragObject(type);
         switch (type)
         {
             case DragType.Sprite:
-                Instantiate(temp.Prefab).GetComponent<DragSprite>().Setup(null, MyUtils.GetMouseWorldPosition(), onDragEnded);
+                Instantiate(temp.Prefab).GetComponent<DragSprite>().Setup(icon, MyUtils.GetMouseWorldPosition(), onDragEnded);
                 break;
             default:
                 break;

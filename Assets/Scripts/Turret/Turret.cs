@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
-using static UnityEngine.GraphicsBuffer;
 
 public class Turret : MonoBehaviour
 {
@@ -11,6 +10,8 @@ public class Turret : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float currentTime;
+
+    [SerializeField] private int planesShotDown;
 
     [SerializeField] private Item projectileItem;
 
@@ -21,7 +22,9 @@ public class Turret : MonoBehaviour
 
     private bool _goingUp = true;
 
-    [field: SerializeField] public string Id { get; set; }
+    public string UniqueId { get; set; }
+
+    [field: SerializeField] public GeneralTurretInfo TurretInfo { get; private set; }
 
     private void Start()
     {
@@ -31,6 +34,7 @@ public class Turret : MonoBehaviour
     private void OnEnable()
     {
         TurretManager.Instance.AddTurret(this);
+        UniqueId = Guid.NewGuid().ToString();
     }
 
     private void OnDisable()
@@ -70,6 +74,7 @@ public class Turret : MonoBehaviour
             if (Stockpile.Instance.RemoveFromStockpile(projectileItem, 1))
             {
                 Projectile newProjectile = ProjectileManager.Instance.SpawnProjectile();
+                newProjectile.DestroyedAPlaneCallback = ProjectileShotDownAPlane;
                 newProjectile.transform.position = turretBarrels[index].position;
                 newProjectile.transform.rotation = turretBarrels[index].rotation;
                 newProjectile.HasBeenHit = false;
@@ -82,11 +87,14 @@ public class Turret : MonoBehaviour
 
     }
 
+    private void ProjectileShotDownAPlane()
+    {
+        planesShotDown++;
+    }
+
     public void StartDrag()
     {
         MergeManager.Instance.SelectedTurret = this;
     }
 
-    [ContextMenu("Generate new id")]
-    public void GenerateId() => Id = Guid.NewGuid().ToString();
 }

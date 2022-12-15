@@ -40,7 +40,7 @@ public class StoreManager : MonoBehaviour
             var line = storeItems[i];
             StoreSlot ui = Instantiate(storeSlotPrefab, storeSlotParent);
             _drawnStoreItems.Add(ui);
-            ui.Setup(storeItems[i].ItemName, storeItems[i].Price, OnStoreItemSelected, i);
+            ui.Setup(storeItems[i].TurretInfo.turretName, storeItems[i].Price, OnStoreItemSelected, i);
         }
     }
 
@@ -48,7 +48,7 @@ public class StoreManager : MonoBehaviour
     {
         _currentlySelectedStoreItem = storeItems[index];
         BuildingManager.Instance.EnableBuildingGrid();
-        DragManager.Instance.StartDrag(DragType.Sprite, DragEnded);
+        DragManager.Instance.StartDrag(null, DragType.Sprite, DragEnded);
     }
 
     private void DragEnded(GameObject obj)
@@ -58,10 +58,11 @@ public class StoreManager : MonoBehaviour
 
             if (TryUseMoney(_currentlySelectedStoreItem))
             {
-                BuildingManager.Instance.Build(_currentlySelectedStoreItem.Prefab, obj.transform.position);
+                BuildingManager.Instance.Build(_currentlySelectedStoreItem.TurretInfo.Prefab, obj.transform.position);
             }
         }
         _currentlySelectedStoreItem = null;
+        BuildingManager.Instance.DisableBuildingGrid();
         Destroy(obj);
     }
 

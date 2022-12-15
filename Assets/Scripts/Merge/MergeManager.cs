@@ -2,15 +2,17 @@ using Finark.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class MergeManager : MonoBehaviour
 {
 
     [SerializeField] private Turret selectedTurret;
 
-
     [SerializeField] private GameObject canBuildIconPrefab;
+
+    [SerializeField] private Sprite sprite;
+
+    [SerializeField] private MergeTree mergeTree;
 
     private List<GameObject> drawnCanBuildIcons = new List<GameObject>();
     private GameObject _tempBuildingButton;
@@ -27,7 +29,7 @@ public class MergeManager : MonoBehaviour
             if (value != null)
             {
                 EnableGrid();
-                DragManager.Instance.StartDrag(DragType.Sprite, DragEnded);
+                DragManager.Instance.StartDrag(sprite, DragType.Sprite, DragEnded);
             }
         } 
     }
@@ -60,7 +62,7 @@ public class MergeManager : MonoBehaviour
             if (cell.CurrentObject.TryGetComponent(out Turret turret))
             {
 
-                if (turret.Id == SelectedTurret.Id)
+                if (turret.TurretInfo.Id == SelectedTurret.TurretInfo.Id)
                 {
                     _tempBuildingButton = Instantiate(canBuildIconPrefab);
                     drawnCanBuildIcons.Add(_tempBuildingButton);
@@ -87,7 +89,19 @@ public class MergeManager : MonoBehaviour
         {
             if (GridCreator.Instance.Grid.GetValue(pos).CurrentObject != null)
             {
-                Destroy(GridCreator.Instance.Grid.GetValue(pos).CurrentObject);
+                if (GridCreator.Instance.Grid.GetValue(pos).CurrentObject.TryGetComponent(out Turret turret))
+                {
+                    if (turret.UniqueId != selectedTurret.UniqueId)
+                    {
+                        if (turret.TurretInfo.Id == selectedTurret.TurretInfo.Id)
+                        {
+                            var grid = GridCreator.Instance.Grid.GetValue(selectedTurret.transform.position);
+                            var selectedGameObject = grid.CurrentObject;
+                            grid.CurrentObject = null;
+                            Destroy(selectedGameObject);
+                        }
+                    }
+                }
             }
         }
 

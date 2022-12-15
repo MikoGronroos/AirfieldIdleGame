@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Store Item")]
 public class StoreItem : ScriptableObject
 {
-    public string ItemName;
-    public GameObject Prefab;
+
+    public GeneralTurretInfo TurretInfo;
     public int Price;
     private int BuyAmount = 0;
 

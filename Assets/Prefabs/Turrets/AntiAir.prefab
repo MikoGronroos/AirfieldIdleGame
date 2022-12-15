@@ -166,13 +166,14 @@ MonoBehaviour:
   fireRate: 1.11
   projectileSpeed: 390
   currentTime: 0
+  planesShotDown: 0
   projectileItem: {fileID: 11400000, guid: 9fe39a816168211408a3f11b84a1cb24, type: 2}
   shootFromRandomBarrels: 0
   index: 0
   turretBarrels:
   - {fileID: 7003466377453902674}
   - {fileID: 2220390729515855358}
-  <Id>k__BackingField: ae6da041-64c2-4d58-8206-a0e7e9f03204
+  <TurretInfo>k__BackingField: {fileID: 11400000, guid: 0f780dcc1e2521f4b8b0d13a9a683576, type: 2}
 --- !u!61 &4197588567111113181
 BoxCollider2D:
   m_ObjectHideFlags: 0

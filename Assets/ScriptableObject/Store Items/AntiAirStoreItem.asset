@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606bf46b1aa61b245a7e5dbbf82ff7dd, type: 3}
   m_Name: AntiAirStoreItem
   m_EditorClassIdentifier: 
-  ItemName: Antiair
-  Prefab: {fileID: 4445425861503015271, guid: 2a68cdfdea605cb408b40f9dc4355cfb, type: 3}
+  TurretInfo: {fileID: 11400000, guid: 0f780dcc1e2521f4b8b0d13a9a683576, type: 2}
   Price: 2

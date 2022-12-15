@@ -1,4 +1,3 @@
-using Finark.Utils;
 using UnityEngine;
 
 public class GridCreator : MonoBehaviour
@@ -45,7 +44,10 @@ public class GridCell
         set 
         {
             _currentObject = value;
-            _currentObject.transform.position = GetGridPosition(); 
+            if (_currentObject != null)
+            {
+                _currentObject.transform.position = GetGridPosition();
+            }
         }
     }
 
