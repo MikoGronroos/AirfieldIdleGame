@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static UnityEditor.Progress;
+using static UnityEngine.GraphicsBuffer;
 
 public class Turret : MonoBehaviour
 {
@@ -24,6 +26,16 @@ public class Turret : MonoBehaviour
     private void Start()
     {
         currentTime = fireRate;
+    }
+
+    private void OnEnable()
+    {
+        TurretManager.Instance.AddTurret(this);
+    }
+
+    private void OnDisable()
+    {
+        TurretManager.Instance.RemoveTurret(this);
     }
 
     public void UpdateTick()
@@ -70,12 +82,11 @@ public class Turret : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    public void StartDrag()
     {
         MergeManager.Instance.SelectedTurret = this;
     }
 
     [ContextMenu("Generate new id")]
     public void GenerateId() => Id = Guid.NewGuid().ToString();
-
 }

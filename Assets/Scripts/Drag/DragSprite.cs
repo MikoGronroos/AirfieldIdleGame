@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class ShopDragSprite : MonoBehaviour
+public class DragSprite : MonoBehaviour
 {
 
     private SpriteRenderer _renderer;

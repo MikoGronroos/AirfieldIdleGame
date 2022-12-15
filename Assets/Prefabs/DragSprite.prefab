@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2377054594984132374}
   - component: {fileID: 2377054594984132375}
   m_Layer: 0
-  m_Name: ShopDragSprite
+  m_Name: DragSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

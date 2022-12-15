@@ -11,7 +11,7 @@ public class StoreManager : MonoBehaviour
     [SerializeField] private StoreSlot storeSlotPrefab;
     [SerializeField] private Transform storeSlotParent;
 
-    [SerializeField] private ShopDragSprite dragSpritePrefab;
+    [SerializeField] private DragSprite dragSpritePrefab;
 
     private List<StoreSlot> _drawnStoreItems = new List<StoreSlot>();
     private StoreItem _currentlySelectedStoreItem;
@@ -48,8 +48,7 @@ public class StoreManager : MonoBehaviour
     {
         _currentlySelectedStoreItem = storeItems[index];
         BuildingManager.Instance.EnableBuildingGrid();
-
-        Instantiate(dragSpritePrefab).Setup(null, MyUtils.GetMouseWorldPosition(), DragEnded);
+        DragManager.Instance.StartDrag(DragType.Sprite, DragEnded);
     }
 
     private void DragEnded(GameObject obj)

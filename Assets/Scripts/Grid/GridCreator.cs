@@ -45,11 +45,16 @@ public class GridCell
         set 
         {
             _currentObject = value;
-            _currentObject.transform.position = GridCreator.Instance.Grid.GetWorldPosition((int)GridPosition.x, (int)GridPosition.y); 
+            _currentObject.transform.position = GetGridPosition(); 
         }
     }
 
     public Vector2 GridPosition;
+
+    public Vector3 GetGridPosition()
+    {
+        return GridCreator.Instance.Grid.GetWorldPosition((int)GridPosition.x, (int)GridPosition.y);
+    }
 
     public GridCell(Vector2 pos)
     {

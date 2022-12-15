@@ -50,10 +50,6 @@ public class BuildingManager : MonoBehaviour
     {
         DisableBuildingGrid();
         var go = Instantiate(prefab);
-        if (go.TryGetComponent(out Turret turret))
-        {
-            TurretManager.Instance.AddTurret(turret);
-        }
         GridCreator.Instance.Grid.GetValue(pos).CurrentObject = go;
         return go;
     }

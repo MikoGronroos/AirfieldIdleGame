@@ -1,5 +1,8 @@
+using Finark.Utils;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class MergeManager : MonoBehaviour
 {
@@ -24,6 +27,7 @@ public class MergeManager : MonoBehaviour
             if (value != null)
             {
                 EnableGrid();
+                DragManager.Instance.StartDrag(DragType.Sprite, DragEnded);
             }
         } 
     }
@@ -47,7 +51,6 @@ public class MergeManager : MonoBehaviour
         _instance = this;
     }
 
-
     public void EnableGrid()
     {
         foreach (var cell in GridCreator.Instance.Grid.GridArray)
@@ -61,11 +64,36 @@ public class MergeManager : MonoBehaviour
                 {
                     _tempBuildingButton = Instantiate(canBuildIconPrefab);
                     drawnCanBuildIcons.Add(_tempBuildingButton);
-                    cell.CurrentObject = _tempBuildingButton;
+                    _tempBuildingButton.transform.position = cell.GetGridPosition();
                     _tempBuildingButton = null;
                 }
             }
         }
+    }
+
+    public void DisableGrid()
+    {
+        foreach (var cell in drawnCanBuildIcons)
+        {
+            Destroy(cell.gameObject);
+        }
+        drawnCanBuildIcons.Clear();
+    }
+
+    private void DragEnded(GameObject obj)
+    {
+        Vector3 pos = MyUtils.GetMouseWorldPosition();
+        if (GridCreator.Instance.Grid.IsInsideOfGrid(pos))
+        {
+            if (GridCreator.Instance.Grid.GetValue(pos).CurrentObject != null)
+            {
+                Destroy(GridCreator.Instance.Grid.GetValue(pos).CurrentObject);
+            }
+        }
+
+        SelectedTurret = null;
+        DisableGrid();
+        Destroy(obj);
     }
 
 }
