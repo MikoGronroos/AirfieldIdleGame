@@ -85,9 +85,10 @@ public class MergeManager : MonoBehaviour
         Vector3 pos = MyUtils.GetMouseWorldPosition();
         if (GridCreator.Instance.Grid.IsInsideOfGrid(pos))
         {
-            if (GridCreator.Instance.Grid.GetValue(pos).CurrentObject != null)
+            GridCell underMouse = GridCreator.Instance.Grid.GetValue(pos);
+            if (underMouse.CurrentObject != null)
             {
-                if (GridCreator.Instance.Grid.GetValue(pos).CurrentObject.TryGetComponent(out Turret turret))
+                if (underMouse.CurrentObject.TryGetComponent(out Turret turret))
                 {
                     if (turret.UniqueId != selectedTurret.UniqueId)
                     {
@@ -96,6 +97,7 @@ public class MergeManager : MonoBehaviour
                             var grid = GridCreator.Instance.Grid.GetValue(selectedTurret.transform.position);
                             var selectedGameObject = grid.CurrentObject;
                             grid.CurrentObject = null;
+                            Merge(underMouse);
                             Destroy(selectedGameObject);
                         }
                     }
@@ -106,6 +108,13 @@ public class MergeManager : MonoBehaviour
         SelectedTurret = null;
         DisableGrid();
         Destroy(obj);
+    }
+
+    private void Merge(GridCell cell)
+    {
+        var tempObject = cell.CurrentObject;
+        cell.CurrentObject = null;
+        Destroy(tempObject);
     }
 
 }
