@@ -10,8 +10,6 @@ public class MergeManager : MonoBehaviour
 
     [SerializeField] private GameObject canBuildIconPrefab;
 
-    [SerializeField] private Sprite sprite;
-
     [SerializeField] private MergeTree mergeTree;
 
     private List<GameObject> drawnCanBuildIcons = new List<GameObject>();
@@ -29,7 +27,7 @@ public class MergeManager : MonoBehaviour
             if (value != null)
             {
                 EnableGrid();
-                DragManager.Instance.StartDrag(sprite, DragType.Sprite, DragEnded);
+                DragManager.Instance.StartDrag(selectedTurret.TurretInfo.Icon, DragType.Sprite, DragEnded);
             }
         } 
     }

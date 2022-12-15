@@ -48,7 +48,7 @@ public class StoreManager : MonoBehaviour
     {
         _currentlySelectedStoreItem = storeItems[index];
         BuildingManager.Instance.EnableBuildingGrid();
-        DragManager.Instance.StartDrag(null, DragType.Sprite, DragEnded);
+        DragManager.Instance.StartDrag(_currentlySelectedStoreItem.TurretInfo.Icon, DragType.Sprite, DragEnded);
     }
 
     private void DragEnded(GameObject obj)
