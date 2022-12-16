@@ -303,8 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killConfirmedPool: {fileID: 1865302448}
-  killConfirmedTime: 1
-  yOffset: 5
+  killConfirmedFadeValue: 0.04
+  killConfirmedTime: 0.9
+  yOffset: 5.3
 --- !u!1 &411084165
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,8 +838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planePrefab: {fileID: 153373087135984165, guid: bdbe09c6994b67145a2bc578b35dae0c, type: 3}
-  minPlanes: 7
-  maxPlanes: 7
+  minPlanes: 20
+  maxPlanes: 20
   planes: []
   planeSpawnPositions:
   - {fileID: 145534483}

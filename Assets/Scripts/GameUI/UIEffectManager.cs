@@ -6,6 +6,8 @@ public class UIEffectManager : MonoBehaviour
 
     [Header("Kill confirmed UI")]
     [SerializeField] private ObjectPool killConfirmedPool;
+    [Range(0,1)]
+    [SerializeField] private float killConfirmedFadeValue = 1;
     [SerializeField] private float killConfirmedTime;
     [SerializeField] private float yOffset;
 
@@ -29,8 +31,9 @@ public class UIEffectManager : MonoBehaviour
             case UIEffect.KillConfirmed:
                 var uiEffect = killConfirmedPool.Get() as KillConfirmed;
                 uiEffect.transform.position = pos;
-                uiEffect.killNumberText.DOFade(100, killConfirmedTime);
+                uiEffect.killNumberText.DOFade(killConfirmedFadeValue, killConfirmedTime);
                 uiEffect.transform.DOMoveY(pos.y + yOffset, killConfirmedTime).OnComplete(() => {
+                    uiEffect.killNumberText.alpha = 1;
                     killConfirmedPool.Release(uiEffect);
                 });
                 break;
