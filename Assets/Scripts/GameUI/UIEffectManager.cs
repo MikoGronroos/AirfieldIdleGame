@@ -27,8 +27,9 @@ public class UIEffectManager : MonoBehaviour
         switch (effect)
         {
             case UIEffect.KillConfirmed:
-                var uiEffect = killConfirmedPool.Get();
+                var uiEffect = killConfirmedPool.Get() as KillConfirmed;
                 uiEffect.transform.position = pos;
+                uiEffect.killNumberText.DOFade(100, killConfirmedTime);
                 uiEffect.transform.DOMoveY(pos.y + yOffset, killConfirmedTime).OnComplete(() => {
                     killConfirmedPool.Release(uiEffect);
                 });
