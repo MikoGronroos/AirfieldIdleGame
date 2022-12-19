@@ -53,6 +53,7 @@ public class DragManager : MonoBehaviour
 [Serializable]
 public class DragObject
 {
+    [SerializeField] private string dragName;
     public GameObject Prefab;
     public DragType DragType;
 }

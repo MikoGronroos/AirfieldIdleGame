@@ -305,7 +305,7 @@ MonoBehaviour:
   killConfirmedPool: {fileID: 1865302448}
   killConfirmedFadeValue: 0.04
   killConfirmedTime: 0.9
-  yOffset: 5.3
+  yOffset: 2.9
 --- !u!1 &411084165
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,7 +894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragObjects:
-  - Prefab: {fileID: 2377054594984132373, guid: b10e49b758bdbd144a2168edcf1a7516, type: 3}
+  - dragName: Sprite
+    Prefab: {fileID: 2377054594984132373, guid: b10e49b758bdbd144a2168edcf1a7516, type: 3}
     DragType: 0
 --- !u!1 &796773640
 GameObject:
