@@ -1,6 +1,7 @@
 using Finark.Utils;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class MergeManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class MergeManager : MonoBehaviour
     [SerializeField] private Turret selectedTurret;
 
     [SerializeField] private GameObject canBuildIconPrefab;
+
+    [SerializeField] private UpgradePathPicker upgradePathPicker;
 
     private List<GameObject> drawnCanBuildIcons = new List<GameObject>();
     private GameObject _tempBuildingButton;
@@ -113,13 +116,18 @@ public class MergeManager : MonoBehaviour
 
     private void Merge(GridCell cell, Turret upgrade)
     {
+        //Activate and setup merge path chooser
+        upgradePathPicker.gameObject.SetActive(true);
 
-        //Clear the original object in the cell
-        var tempObject = cell.CurrentObject;
-        cell.CurrentObject = null;
-        Destroy(tempObject);
+        upgradePathPicker.Setup(upgrade.GetPossibleMerges()[0].TurretInfo.Icon, upgrade.GetPossibleMerges()[1].TurretInfo.Icon, (int index) => {
 
-        //Create merge product prefab
-        BuildingManager.Instance.Build(upgrade.GetPossibleMerges()[UnityEngine.Random.Range(0,2)].gameObject, cell.GetGridPosition()).TryGetComponent(out Turret turret);
+            //Clear the original object in the cell
+            var tempObject = cell.CurrentObject;
+            cell.CurrentObject = null;
+            Destroy(tempObject);
+
+            BuildingManager.Instance.Build(upgrade.GetPossibleMerges()[index].gameObject, cell.GetGridPosition()).TryGetComponent(out Turret turret);
+            upgradePathPicker.gameObject.SetActive(false);
+        });
     }
 }
