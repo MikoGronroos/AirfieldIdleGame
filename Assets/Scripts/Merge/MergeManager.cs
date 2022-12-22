@@ -1,7 +1,5 @@
 using Finark.Utils;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class MergeManager : MonoBehaviour
@@ -98,11 +96,7 @@ public class MergeManager : MonoBehaviour
                     {
                         if (turret.TurretInfo.Id == selectedTurret.TurretInfo.Id)
                         {
-                            var grid = GridCreator.Instance.Grid.GetValue(selectedTurret.transform.position);
-                            var selectedGameObject = grid.CurrentObject;
-                            grid.CurrentObject = null;
                             Merge(underMouse, turret);
-                            Destroy(selectedGameObject);
                         }
                     }
                 }
@@ -116,10 +110,20 @@ public class MergeManager : MonoBehaviour
 
     private void Merge(GridCell cell, Turret upgrade)
     {
+
+        var grid = GridCreator.Instance.Grid.GetValue(selectedTurret.transform.position);
+        var selectedGameObject = grid.CurrentObject;
+
+        selectedGameObject.gameObject.SetActive(false);
+
         //Activate and setup merge path chooser
         upgradePathPicker.gameObject.SetActive(true);
 
         upgradePathPicker.Setup(upgrade.GetPossibleMerges()[0].TurretInfo.Icon, upgrade.GetPossibleMerges()[1].TurretInfo.Icon, (int index) => {
+
+            //Destroy not the merge target
+            grid.CurrentObject = null;
+            Destroy(selectedGameObject);
 
             //Clear the original object in the cell
             var tempObject = cell.CurrentObject;
@@ -128,6 +132,9 @@ public class MergeManager : MonoBehaviour
 
             BuildingManager.Instance.Build(upgrade.GetPossibleMerges()[index].gameObject, cell.GetGridPosition()).TryGetComponent(out Turret turret);
             upgradePathPicker.gameObject.SetActive(false);
+        }, 
+        () => {
+            selectedGameObject.gameObject.SetActive(true);
         });
     }
 }

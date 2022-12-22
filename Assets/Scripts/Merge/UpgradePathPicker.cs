@@ -8,6 +8,8 @@ public class UpgradePathPicker : MonoBehaviour
     [SerializeField] private Button firstOptionButton;
     [SerializeField] private Button secondOptionButton;
 
+    [SerializeField] private CloseButton closeButton;
+
     private Action<int> mergeAction;
 
     private void Awake()
@@ -15,11 +17,12 @@ public class UpgradePathPicker : MonoBehaviour
         InitializeButtons();
     }
 
-    public void Setup(Sprite icon1, Sprite icon2, Action<int> action)
+    public void Setup(Sprite icon1, Sprite icon2, Action<int> action, Action closeButtonCallback)
     {
         firstOptionButton.image.sprite = icon1;
         secondOptionButton.image.sprite = icon2;
         mergeAction = action;
+        closeButton.SetCloseAction(closeButtonCallback);
     }
 
     private void InitializeButtons()
