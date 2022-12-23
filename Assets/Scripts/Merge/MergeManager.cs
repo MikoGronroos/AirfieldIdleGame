@@ -1,5 +1,6 @@
 using Finark.Utils;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MergeManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class MergeManager : MonoBehaviour
     [SerializeField] private UpgradePathPicker upgradePathPicker;
 
     private List<GameObject> drawnCanBuildIcons = new List<GameObject>();
+    private List<string> mergeOnceIds= new List<string>();
     private GameObject _tempBuildingButton;
 
     public Turret SelectedTurret
@@ -130,8 +132,16 @@ public class MergeManager : MonoBehaviour
             cell.CurrentObject = null;
             Destroy(tempObject);
 
-            BuildingManager.Instance.Build(upgrade.GetPossibleMerges()[index].gameObject, cell.GetGridPosition()).TryGetComponent(out Turret turret);
+            var mergeTarget = upgrade.GetPossibleMerges()[index];
+
+            BuildingManager.Instance.Build(mergeTarget.gameObject, cell.GetGridPosition());
             upgradePathPicker.gameObject.SetActive(false);
+
+            if (!mergeOnceIds.Contains(mergeTarget.TurretInfo.Id))
+            {
+                mergeOnceIds.Add(mergeTarget.TurretInfo.Id);
+                StoreManager.Instance.AddStoreItem(mergeTarget.TurretInfo.UnlockedStoreItem);
+            }
         }, 
         () => {
             selectedGameObject.gameObject.SetActive(true);

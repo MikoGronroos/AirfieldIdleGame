@@ -16,6 +16,19 @@ public class StoreManager : MonoBehaviour
     private List<StoreSlot> _drawnStoreItems = new List<StoreSlot>();
     private StoreItem _currentlySelectedStoreItem;
 
+    #region Singleton
+
+    private static StoreManager _instance;
+
+    public static StoreManager Instance { get { return _instance; } }
+
+    #endregion
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     private void Start()
     {
         UpdateStore();
@@ -73,4 +86,12 @@ public class StoreManager : MonoBehaviour
         return true;
     }
 
+    public void AddStoreItem(StoreItem item)
+    {
+        if (!storeItems.Contains(item))
+        {
+            storeItems.Add(item);
+        }
+        UpdateStore();
+    }
 }
