@@ -11,6 +11,7 @@ public class GeneralTurretInfo : ScriptableObject
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public int PlaneKillsNeededToMerge { get; private set; }
     [field: SerializeField] public StoreItem UnlockedStoreItem { get; private set; }
+    [field: SerializeField] public int PowerScore { get; private set; }
 
     [ContextMenu("Generate new id")]
     public void GenerateId() => Id = Guid.NewGuid().ToString();

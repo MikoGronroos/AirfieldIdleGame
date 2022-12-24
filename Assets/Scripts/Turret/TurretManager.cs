@@ -31,11 +31,13 @@ public class TurretManager : MonoBehaviour
 
     public void AddTurret(Turret turret)
     {
+        Airfield.Instance.PowerScore += turret.TurretInfo.PowerScore;
         turrets.Add(turret);
     }
 
     public void RemoveTurret(Turret turret)
     {
+        Airfield.Instance.PowerScore -= turret.TurretInfo.PowerScore;
         turrets.Remove(turret);
     }
 

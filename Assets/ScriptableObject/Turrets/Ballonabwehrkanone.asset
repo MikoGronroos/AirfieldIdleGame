@@ -18,3 +18,4 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 7395bf0bc3cc40e4ab2dda5ec6832261, type: 3}
   <PlaneKillsNeededToMerge>k__BackingField: 5
   <UnlockedStoreItem>k__BackingField: {fileID: 11400000, guid: 4676050f428524f4bb5ec8dbc683c130, type: 2}
+  <PowerScore>k__BackingField: 1
