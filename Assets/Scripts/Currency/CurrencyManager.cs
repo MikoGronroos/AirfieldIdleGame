@@ -50,4 +50,12 @@ public class CurrencyManager : MonoBehaviour
         return currentCurrency >= price;
     }
 
+    public bool TryUseMoney(int price)
+    {
+        if (!HasEnoughCurrency(price)) return false;
+        CurrentCurrency -= price;
+        return true;
+    }
+
+
 }

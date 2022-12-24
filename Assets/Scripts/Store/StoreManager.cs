@@ -69,7 +69,7 @@ public class StoreManager : MonoBehaviour
         if (GridCreator.Instance.Grid.IsInsideOfGrid(obj.transform.position))
         {
 
-            if (TryUseMoney(_currentlySelectedStoreItem))
+            if (CurrencyManager.Instance.TryUseMoney(_currentlySelectedStoreItem.Price))
             {
                 BuildingManager.Instance.Build(_currentlySelectedStoreItem.TurretInfo.Prefab, obj.transform.position);
             }
@@ -77,13 +77,6 @@ public class StoreManager : MonoBehaviour
         _currentlySelectedStoreItem = null;
         BuildingManager.Instance.DisableBuildingGrid();
         Destroy(obj);
-    }
-
-    private bool TryUseMoney(StoreItem item)
-    {
-        if (!CurrencyManager.Instance.HasEnoughCurrency(item.Price)) return false;
-        CurrencyManager.Instance.CurrentCurrency -= item.Price;
-        return true;
     }
 
     public void AddStoreItem(StoreItem item)

@@ -121,7 +121,12 @@ public class MergeManager : MonoBehaviour
         //Activate and setup merge path chooser
         upgradePathPicker.gameObject.SetActive(true);
 
-        upgradePathPicker.Setup(upgrade.GetPossibleMerges()[0].TurretInfo.Icon, upgrade.GetPossibleMerges()[1].TurretInfo.Icon, (int index) => {
+        var merge1 = upgrade.GetPossibleMerges()[0];
+        var merge2 = upgrade.GetPossibleMerges()[1];
+
+        upgradePathPicker.Setup(merge1.TurretInfo.Icon, merge2.TurretInfo.Icon, (int index) => {
+
+            var mergeTarget = upgrade.GetPossibleMerges()[index];
 
             //Destroy not the merge target
             grid.CurrentObject = null;
@@ -131,8 +136,6 @@ public class MergeManager : MonoBehaviour
             var tempObject = cell.CurrentObject;
             cell.CurrentObject = null;
             Destroy(tempObject);
-
-            var mergeTarget = upgrade.GetPossibleMerges()[index];
 
             BuildingManager.Instance.Build(mergeTarget.gameObject, cell.GetGridPosition());
             upgradePathPicker.gameObject.SetActive(false);
