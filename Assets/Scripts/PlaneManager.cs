@@ -6,7 +6,7 @@ public class PlaneManager : MonoBehaviour
 
     [SerializeField] private Plane planePrefab;
 
-    [SerializeField] private int basePlaneAmount;
+    [SerializeField] private float planePowerScoreMultiplier;
 
     [SerializeField] private List<Plane> planes = new List<Plane>();
     [SerializeField] private List<GameObject> planeSpawnPositions = new List<GameObject>();
@@ -43,7 +43,7 @@ public class PlaneManager : MonoBehaviour
     {
         if (planes.Count > 0) return;
 
-        _planeAmount = (int)(Airfield.Instance.PowerScore * 1.35f);
+        _planeAmount = (int)(Airfield.Instance.PowerScore * planePowerScoreMultiplier);
         Debug.Log(_planeAmount);
 
         for (int i = 0; i < _planeAmount; i++)

@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planePrefab: {fileID: 153373087135984165, guid: bdbe09c6994b67145a2bc578b35dae0c, type: 3}
-  basePlaneAmount: 0
+  planePowerScoreMultiplier: 1.35
   planes: []
   planeSpawnPositions:
   - {fileID: 145534483}
