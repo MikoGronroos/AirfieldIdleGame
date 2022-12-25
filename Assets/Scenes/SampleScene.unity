@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6058a694f281e624aa368aec64a7b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolObject: {fileID: 153373087135984165, guid: bdbe09c6994b67145a2bc578b35dae0c, type: 3}
+  poolObject: {fileID: 2027075105577394504, guid: bdbe09c6994b67145a2bc578b35dae0c, type: 3}
   poolParent: {fileID: 570643545}
 --- !u!1 &605961867
 GameObject:
@@ -837,7 +837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4760bb14d160e468533015da21a748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planePrefab: {fileID: 153373087135984165, guid: bdbe09c6994b67145a2bc578b35dae0c, type: 3}
   planePowerScoreMultiplier: 1.35
   planes: []
   planeSpawnPositions:

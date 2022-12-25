@@ -4,8 +4,6 @@ using UnityEngine;
 public class PlaneManager : MonoBehaviour
 {
 
-    [SerializeField] private Plane planePrefab;
-
     [SerializeField] private float planePowerScoreMultiplier;
 
     [SerializeField] private List<Plane> planes = new List<Plane>();
