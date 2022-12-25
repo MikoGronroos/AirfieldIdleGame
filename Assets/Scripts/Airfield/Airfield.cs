@@ -3,7 +3,7 @@ using UnityEngine;
 public class Airfield : MonoBehaviour
 {
 
-    [field: SerializeField] public int PowerScore { get; set; } = 10;
+    [field: SerializeField] public int PowerScore { get; set; } = 5;
 
     #region Singleton
 

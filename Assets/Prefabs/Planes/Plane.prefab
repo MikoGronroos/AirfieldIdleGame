@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12a6b3568cee6f4494c612f8ba1269c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 9
-  minSpeed: 5
+  maxSpeed: 6
+  minSpeed: 4
   speed: 6
   currencyOnDeath: 1
 --- !u!61 &3436582260225025342

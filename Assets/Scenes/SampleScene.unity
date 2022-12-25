@@ -838,8 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planePrefab: {fileID: 153373087135984165, guid: bdbe09c6994b67145a2bc578b35dae0c, type: 3}
-  minPlanes: 20
-  maxPlanes: 20
+  basePlaneAmount: 0
   planes: []
   planeSpawnPositions:
   - {fileID: 145534483}
@@ -3051,7 +3050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bb58e7f7bdd0b4483e77d49d7181b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PowerScore>k__BackingField: 10
+  <PowerScore>k__BackingField: 5
 --- !u!1001 &7593528333380918638
 PrefabInstance:
   m_ObjectHideFlags: 0
